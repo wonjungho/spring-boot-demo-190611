@@ -2,51 +2,54 @@
 //선언을 할떄 function 을 같이 준다. 
 //function 을 같이주게 되면 알고리즘 을 내부에서 짜게된다. 
 //이게 IIFE(이파이패턴)이다.
-var wrapper = document.getElementById('wrapper');
-var wrapper2 = document.getElementById('wrapper2');
 var app = (function () {
     
     let init = function () {
         login_form();
-        signup_form();
     }
     let login_form = function () {
-        wrapper.innerHTML = '<form action="/action_page.php">'
-        + '  First name:<br>'
-        + '  <input type="text" name="firstname" value="Mickey">'
+        let wrapper = document.getElementById('wrapper');
+        wrapper.innerHTML = '<h1>Login</h1>'
+        +'<form action="/action_page.php">'
+        + '  ID:<br>'
+        + '  <input type="text" name="firstname" value="">'
         + '  <br>'
-        + '  Last name:<br>'
-        + '  <input type="text" name="lastname" value="Mouse">'
+        + '  Password:<br>'
+        + '  <input type="text" name="lastname" value="">'
         + '  <br><br>'
-        + '  <input type="button" value="Login">'
-        + ' <input type="button" value="Signup" onclick="go_signup_form()">'
+        + '  <input type="button" value="LOGIN" id="login_btn">'
+        + ' <input type="button" value="JOIN" id="join_btn">'
         + '</form> ';
+        let join_btn =document.getElementById('join_btn')
+        join_btn.addEventListener('click',function(){
+            signup_form();
+        });
     }
     let signup_form = function(){
-        wrapper2.innerHTML = '<form action="/action_page.php">'
-        + '  First name:<br>'
-        + '  <input type="text" name="firstname" value="Mickey">'
+        let wrapper = document.getElementById('wrapper');
+        wrapper.innerHTML = '<h1>Signup</h1>'
+        +'<form action="/action_page.php">'
+        + '  Name:<br>'
+        + '  <input type="text" name="firstname" value="">'
         + '  <br>'
-        + '  Last name:<br>'
-        + '  <input type="text" name="lastname" value="Mouse">'
+        + '  Age:<br>'
+        + '  <input type="text" name="lastname" value="">'
+        + '  <br>'
+        + '  Phone:<br>'
+        + '  <input type="text" name="lastname" value="">'
+        + '  <br>' 
+        + '  EMail:<br>'
+        + '  <input type="text" name="lastname" value="">'
         + '  <br><br>'
-        + '  <input type="text" name="lastname" value="Mouse">'
-        + '  <br><br>' 
-        + '  <input type="text" name="lastname" value="Mouse">'
-        + '  <br><br>'
-        + '  <input type="button" value="ok" onclick="back_loginform()">'
+        + '  <input type="button" value="ok" id="join_ok_btn">'
         + ' <input type="button" value="cancel">'
         + '</form> ';
+        let join_ok_btn =document.getElementById('join_ok_btn');
+        join_ok_btn.addEventListener('click',function(){
+            login_form();
+        });
     }
     return {
         init: init
     };
 })();
-function go_signup_form(){
-    wrapper.style.display="none";
-    wrapper2.style.display="inline";
-}
-function back_loginform(){
-    wrapper.style.display="inline";
-    wrapper2.style.display="none";
-}
