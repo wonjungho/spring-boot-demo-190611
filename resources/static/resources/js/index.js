@@ -18,8 +18,8 @@ var app = (function () {
         + '  Last name:<br>'
         + '  <input type="text" name="lastname" value="Mouse">'
         + '  <br><br>'
-        + '  <input type="submit" value="Login">'
-        + ' <input type="button" value="Signup" id="sign_up" onclick="go_signup_form()">'
+        + '  <input type="button" value="Login">'
+        + ' <input type="button" value="Signup" onclick="go_signup_form()">'
         + '</form> ';
     }
     let signup_form = function(){
@@ -30,13 +30,11 @@ var app = (function () {
         + '  Last name:<br>'
         + '  <input type="text" name="lastname" value="Mouse">'
         + '  <br><br>'
-        + '  <input type="submit" value="Login">'
+        + '  <input type="text" name="lastname" value="Mouse">'
+        + '  <br><br>' 
         + '  <input type="text" name="lastname" value="Mouse">'
         + '  <br><br>'
-        + '  <input type="submit" value="Login">'
-        + '  <input type="text" name="lastname" value="Mouse">'
-        + '  <br><br>'
-        + '  <input type="submit" value="ok" onclick="back_loginform()">'
+        + '  <input type="button" value="ok" onclick="back_loginform()">'
         + ' <input type="button" value="cancel">'
         + '</form> ';
     }
@@ -45,10 +43,10 @@ var app = (function () {
     };
 })();
 function go_signup_form(){
-    wrapper.style.visibility="hidden";
-    wrapper2.style.visibility="visible";
+    wrapper.style.display="none";
+    wrapper2.style.display="inline";
 }
 function back_loginform(){
-    wrapper.style.visibility="visible";
-    wrapper2.style.visibility="hidden";
+    wrapper.style.display="inline";
+    wrapper2.style.display="none";
 }
