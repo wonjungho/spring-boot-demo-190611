@@ -10,21 +10,86 @@ var app = (()=>{
     let login_form = ()=> {
         let wrapper = document.getElementById('wrapper');
         wrapper.innerHTML = '<h1>Login</h1>'
-        +'<form action="/action_page.php">'
+        +'<form action="/login" id="login_form">'
         + '  ID:<br>'
-        + '  <input type="text" name="ID" value="">'
+        + '  <input type="text" name="customerId" id="customerId">'
         + '  <br>'
         + '  Password:<br>'
-        + '  <input type="password" name="PW" value="">'
+        + '  <input type="password" name="password" id="password">'
         + '  <br><br>'
-        + '  <input type="button" value="LOGIN" id="login_btn">'
+        + ' <input type="submit" value="Login" id="login_btn">'
         + ' <input type="button" value="JOIN" id="join_btn">'
+        + ' <input type="button" value="Count" id="count_btn">'
         + '</form> ';
         let join_btn =document.getElementById('join_btn')
         join_btn.addEventListener('click',()=>{
             signup_form();
         });
+        let login_btn=document.getElementById('login_btn');
+        login_btn.addEventListener('click',(e)=>{
+            e.preventDefault();
+            alert('이벤트연결!');
+            id = document.getElementById('customerId').value;
+            pass = document.getElementById('password').value;
+            let xhr=new XMLHttpRequest(),
+            method='GET',
+            url='login/'+id+'/'+pass;
+            xhr.open(method,url,true);
+            xhr.onreadystatechange=()=>{
+                if(xhr.readyState===4&&xhr.status===200){
+                    let d = xhr.responseText;
+                    if(d==='success'){
+                        let wrapper = document.getElementById('wrapper');
+                        wrapper.innerHTML='<h1>마이페이지</h1>'
+
+                    }else{
+                        let wrapper = document.getElementById('wrapper');
+                        wrapper.innerHTML = '<h1>Login</h1>'
+                    +'<form action="/login" id="login_form">'
+                    + '  ID:<br>'
+                    + '  <input type="text" name="customerId" id="customerId">'
+                    + '  <br>'
+                    + '  Password:<br>'
+                    + '  <input type="password" name="password" id="password">'
+                    + '  <br><br>'
+                    + ' <input type="submit" value="Login" id="login_btn">'
+                    + ' <input type="button" value="JOIN" id="join_btn">'
+                    + ' <input type="button" value="Count" id="count_btn">'
+                    + '</form> ';
+
+                    }
+                    alert('AJAX '+xhr.responseText);
+                }
+            };
+            xhr.send();
+            
+            
+        });
+        let count_btn = document.getElementById('count_btn');
+        count_btn.addEventListener('click',()=>{
+            alert('됐다!');
+            count();
+        });
     }
+
+    let count=()=>{
+        let xhr = new XMLHttpRequest();
+        method = 'GET';
+        url ='count' ;
+        xhr.open(method, url, true);
+        xhr.onreadystatechange=()=>{
+            if(xhr.readyState===4 && xhr.status === 200){
+                alert('성공');
+                let wrapper = document.getElementById('wrapper');
+                wrapper.innerHTML ='총 고객수 : <h1>'+xhr.responseText+'</h1>';
+                
+                
+            }
+        }
+        xhr.send();
+    }
+
+
     let signup_form = ()=>{
         let wrapper = document.getElementById('wrapper');
         wrapper.innerHTML = '<h1>Signup</h1>'
@@ -48,6 +113,7 @@ var app = (()=>{
         join_ok_btn.addEventListener('click',()=>{
             login_form();
         });
+
     }
     return {
         init: init
