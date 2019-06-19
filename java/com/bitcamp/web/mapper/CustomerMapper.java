@@ -11,22 +11,13 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface CustomerMapper {
-    
     public void insertCustomer(CustomerDTO customer);
-
     public List<CustomerDTO> selectCustomers();
-
     public List<CustomerDTO> selectCustomersByOption(CustomerDTO option);
-
-    public CustomerDTO selectCustomerBycustomerId(String cutomerId);
-
-    public void updateCustomer(CustomerDTO customer);
-
+    public CustomerDTO selectCustomerById(String customerId);
+    public int updateCustomer(CustomerDTO customer);
     public void deleteCustomer(CustomerDTO customer);
-
     public int selectCount();
-    
     public CustomerDTO login(CustomerDTO customer);
-
     
 }

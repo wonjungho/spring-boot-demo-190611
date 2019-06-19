@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class CustomerServiceImpl implements CustomerService {
-
     @Autowired CustomerMapper customerMapper;
 
     @Override
@@ -24,7 +23,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public List<CustomerDTO> findCustomers() {
-        return null;
+        return customerMapper.selectCustomers();
     }
 
     @Override
@@ -33,18 +32,24 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public CustomerDTO findCustomerBycustomerId(String customerId) {
-        return null;
+    public CustomerDTO findCustomerByCustomerId(String customerId) {
+        return customerMapper.selectCustomerById(customerId);
     }
 
     @Override
-    public void updateCustomer(CustomerDTO customer) {
-
+    public int updateCustomer(CustomerDTO customer) {
+        int res = customerMapper.updateCustomer(customer);
+        if(res == 1){
+            System.out.println("서비스 수정성공");
+        }else{
+            System.out.println("서비스 수정실패");
+        }
+        return res;
     }
 
     @Override
     public void deleteCustomer(CustomerDTO customer) {
-
+        customerMapper.deleteCustomer(customer);
     }
 
     @Override
@@ -55,11 +60,9 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public CustomerDTO login(CustomerDTO customer) {
         System.out.println("컨트롤러에서 넘어온 ID: "+customer.getCustomerId());
-        System.out.println("컨트롤러에서 넘어온 Pass: "+customer.getPassword());
+        System.out.println("컨트롤러에서 넘어온 PASS: "+customer.getPassword());
         return customerMapper.login(customer);
     }
-
-    
 
     
 }

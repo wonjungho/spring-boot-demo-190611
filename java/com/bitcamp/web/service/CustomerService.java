@@ -13,19 +13,14 @@ import org.springframework.stereotype.Component;
 public interface CustomerService {
 
     public void addCustomer(CustomerDTO customer);
-
     public List<CustomerDTO> findCustomers();
-
     public List<CustomerDTO> findCustomersByOption(CustomerDTO option);
-
-    public CustomerDTO findCustomerBycustomerId(String cutomerId);
-
-    public void updateCustomer(CustomerDTO customer);
-
+    public CustomerDTO findCustomerByCustomerId(String customerId);
+    public int updateCustomer(CustomerDTO customer);
     public void deleteCustomer(CustomerDTO customer);
-
     public int countAll();
-    
     public CustomerDTO login(CustomerDTO customer);
+    
+
     
 }
